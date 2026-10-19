@@ -1,10 +1,10 @@
 import csv
-
 import requests
-
 import ipaddress
 
-
+# NOTE: The command used to export the pcapng to a csv file is:
+# tshark -r capture.pcapng -T fields -e frame.time_epoch -e ip.src -e ip.dst -e tcp.dstport -e _ws.col.Info -E header=y -E separator=, > capture.csv
+# Please use this command, or something similar, so that the write code works, as it checks that the source and destination are the first and second index, respectively
 def writeWhoIsFromCSV(path, outputPath):
     with open(path, newline="", encoding="utf-8") as f:
         #List of unique addrresses
@@ -80,15 +80,6 @@ def parse_rdap(data):
 
     return result
 
-# class WhoIsResult:
-#     def __init__(self, startAddress, endAddress, name):
-#         self.startAddress = startAddress
-#         self.endAddress = endAddress
-#         self.name = name
-
-#     def __str__(self):
-#         return f"name: {self.name} \n start: {self.startAddress}\nend: {self.endAddress}\n"
-
 def is_valid_public_ip(address: str) -> bool:
     """Return True if `address` is a well-formed, publicly routable IP address."""
     if not isinstance(address, str):
@@ -103,4 +94,4 @@ def is_valid_public_ip(address: str) -> bool:
     
 
 
-writeWhoIsFromCSV("Wireshark Captures/20261019-173846_vizio-wfp-cnn-acron-r1_192.168.103.133.csv", "20261019-173846_vizio-wfp-cnn-acron-r1 - whois")
+# writeWhoIsFromCSV("source", "dest")
