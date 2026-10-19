@@ -7,33 +7,41 @@ import ipaddress
 
 def writeWhoIsFromCSV(path, outputPath):
     with open(path, newline="", encoding="utf-8") as f:
+        #List of unique addrresses
         addresses = []
+
+        #Read from the file
         reader = csv.reader(f)
-        header = next(reader)       # first row
+
         for row in reader:
+            #For each row, take the source and destination address
             source = row[1]
             dest = row[2]
+
+            #If the source is not in our list of addresses and it is a valid, non-private IPv4 address, add it to the list
             if(source not in addresses):
                 if(is_valid_public_ip(source)):
                     #NOTE: this doesn't correct invalid addresses...
                     addresses.append(source)
 
+            #If the destination is not in our list of addresses and it is a valid, non-private IPv4 address, add it to the list
             if(dest not in addresses):
                 if(is_valid_public_ip(dest)):
                     addresses.append(dest)
 
-        print(addresses)
 
-
+        #Create a dictionary to store API call results
         addressToName = {}
         for address in addresses:
+            #Use the rdap API to perform a whois lookup
             data = requests.get("https://rdap.arin.net/registry/ip/" + str(address), timeout=10).json()
-            relevantData = {}
-            relevantData["endAddress"] = data["endAddress"]
+            #Call helper method to parse relevant data
             res = parse_rdap(data)
+            #Store the data in the dictionary
             addressToName[address] = res
 
 
+            #Store the output in a txt file
             with open(outputPath + ".txt", "w", encoding="utf-8") as f:
                 for address in addressToName.keys():
                     f.write(str(address) + " Information: \n")
@@ -72,14 +80,15 @@ def parse_rdap(data):
 
     return result
 
-class WhoIsResult:
-    def __init__(self, startAddress, endAddress, name):
-        self.startAddress = startAddress
-        self.endAddress = endAddress
-        self.name = name
+# class WhoIsResult:
+#     def __init__(self, startAddress, endAddress, name):
+#         self.startAddress = startAddress
+#         self.endAddress = endAddress
+#         self.name = name
 
-    def __str__(self):
-        return f"name: {self.name} \n start: {self.startAddress}\nend: {self.endAddress}\n"
+#     def __str__(self):
+#         return f"name: {self.name} \n start: {self.startAddress}\nend: {self.endAddress}\n"
+
 def is_valid_public_ip(address: str) -> bool:
     """Return True if `address` is a well-formed, publicly routable IP address."""
     if not isinstance(address, str):
@@ -94,4 +103,4 @@ def is_valid_public_ip(address: str) -> bool:
     
 
 
-writeWhoIsFromCSV("ex.csv")
+writeWhoIsFromCSV("Wireshark Captures/20261019-173846_vizio-wfp-cnn-acron-r1_192.168.103.133.csv", "20261019-173846_vizio-wfp-cnn-acron-r1 - whois")
