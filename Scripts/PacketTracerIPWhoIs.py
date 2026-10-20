@@ -90,8 +90,14 @@ def is_valid_public_ip(address: str) -> bool:
     except ValueError:
         return False
 
-    return ip.is_global
+    return ip.is_global and not(
+        ip.is_private
+        or ip.is_loopback
+        or ip.is_link_local
+        or ip.is_multicast
+        or ip.is_reserved
+        or ip.is_unspecified)
     
 
 
-writeWhoIsFromCSV("Wireshark Captures/CSVs/ACR On/20261019-193427_vizio-hdmifoxnews-acron-adon-r1_192.168.103.133.csv", "20261019-193427_vizio-hdmifoxnews-acron-adon - whois")
+# writeWhoIsFromCSV("Wireshark Captures/SuperSonic/CSVs/ACR On/SuperSonicTV-Channel6504-acroff.csv", "SuperSonicTV-Channel6504-acroff - whois")

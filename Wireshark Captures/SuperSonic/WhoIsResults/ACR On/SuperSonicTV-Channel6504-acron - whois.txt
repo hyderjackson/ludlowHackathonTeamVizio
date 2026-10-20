@@ -1,0 +1,66 @@
+35.175.155.93 Information: 
+{'network_name': 'AT-88-Z', 'start_address': '35.152.0.0', 'end_address': '35.183.255.255', 'owner': 'Amazon Technologies Inc.', 'description': 'All abuse reports MUST include:\r * src IP\r * dest IP (your IP)\r * dest port\r * Accurate date/timestamp and timezone of activity\r * Intensity/frequency (short log extracts)\r * Your contact details (phone and email) Without these we will be unable to identify the correct owner of the IP address at that point in time.', 'location': '410 Terry Ave N.\nSeattle\nWA\n98109\nUnited States'}
+----------------------------------
+8.8.8.8 Information: 
+{'network_name': 'GOGL', 'start_address': '8.8.8.0', 'end_address': '8.8.8.255', 'owner': 'Google LLC', 'description': 'Please note that the recommended way to file abuse complaints are located in the following links.   To report abuse and illegal activity: https://www.google.com/contact/  For legal requests: http://support.google.com/legal   Regards,  The Google Team', 'location': '1600 Amphitheatre Parkway\nMountain View\nCA\n94043\nUnited States'}
+----------------------------------
+18.214.127.247 Information: 
+{'network_name': 'AT-88-Z', 'start_address': '18.32.0.0', 'end_address': '18.255.255.255', 'owner': 'Amazon Technologies Inc.', 'description': 'All abuse reports MUST include:\r * src IP\r * dest IP (your IP)\r * dest port\r * Accurate date/timestamp and timezone of activity\r * Intensity/frequency (short log extracts)\r * Your contact details (phone and email) Without these we will be unable to identify the correct owner of the IP address at that point in time.', 'location': '410 Terry Ave N.\nSeattle\nWA\n98109\nUnited States'}
+----------------------------------
+18.238.79.145 Information: 
+{'network_name': 'AMAZON-CF', 'start_address': '18.238.0.0', 'end_address': '18.239.255.255', 'owner': 'Amazon.com, Inc.', 'description': None, 'location': '1918 8th Ave\nSEATTLE\nWA\n98101-1244\nUnited States'}
+----------------------------------
+18.238.75.102 Information: 
+{'network_name': 'AMAZON-CF', 'start_address': '18.238.0.0', 'end_address': '18.239.255.255', 'owner': 'Amazon.com, Inc.', 'description': None, 'location': '1918 8th Ave\nSEATTLE\nWA\n98101-1244\nUnited States'}
+----------------------------------
+109.61.86.69 Information: 
+{'network_name': 'CDN77-Boston', 'start_address': '109.61.86.0', 'end_address': '109.61.86.255', 'owner': 'DATACAMP-MNT', 'description': None, 'location': None}
+----------------------------------
+136.110.193.66 Information: 
+{'network_name': 'GOOGL-2', 'start_address': '136.107.0.0', 'end_address': '136.111.255.255', 'owner': 'Google LLC', 'description': '*** The IP addresses under this Org-ID are in use by Google Cloud customers *** \r \r Direct all copyright and legal complaints to \r https://support.google.com/legal/go/report\r \r Direct all spam and abuse complaints to \r https://support.google.com/code/go/gce_abuse_report\r \r For fastest response, use the relevant forms above.\r \r Complaints can also be sent to the GC Abuse desk \r (google-cloud-compliance@google.com) \r but may have longer turnaround times.\r \r Complaints sent to any other POC will be ignored.', 'location': '1600 Amphitheatre Parkway\nMountain View\nCA\n94043\nUnited States'}
+----------------------------------
+13.33.67.98 Information: 
+{'network_name': 'AMAZO-CF', 'start_address': '13.32.0.0', 'end_address': '13.33.255.255', 'owner': 'Amazon.com, Inc.', 'description': None, 'location': '1918 8th Ave\nSEATTLE\nWA\n98101-1244\nUnited States'}
+----------------------------------
+20.170.76.123 Information: 
+{'network_name': 'MSFT', 'start_address': '20.160.0.0', 'end_address': '20.175.255.255', 'owner': 'Microsoft Corporation', 'description': 'To report suspected security issues specific to traffic emanating from Microsoft online services, including the distribution of malicious content or other illicit or illegal material through a Microsoft online service, please submit reports to:\r * https://cert.microsoft.com.  \r \r For SPAM and other abuse issues, such as Microsoft Accounts, please contact:\r * abuse@microsoft.com.  \r \r To report security vulnerabilities in Microsoft products and services, please contact:\r * secure@microsoft.com.  \r \r For legal and law enforcement-related requests, please contact:\r * msndcc@microsoft.com\r \r For routing, peering or DNS issues, please \r contact:\r * IOC@microsoft.com', 'location': 'One Microsoft Way\nRedmond\nWA\n98052\nUnited States'}
+----------------------------------
+43.157.127.133 Information: 
+{'network_name': 'ACEVILLEPTELTD-SG', 'start_address': '43.157.0.0', 'end_address': '43.157.127.255', 'owner': None, 'description': None, 'location': None}
+----------------------------------
+98.67.144.87 Information: 
+{'network_name': 'BLS-98-67-144-0-1003020950', 'start_address': '98.67.144.0', 'end_address': '98.67.159.255', 'owner': 'BGK ADSL CBB', 'description': None, 'location': '575 Morosgo Dr. NE\nAtlanta\nGA\n30324\nUnited States'}
+----------------------------------
+52.32.180.30 Information: 
+{'network_name': 'AT-88-Z', 'start_address': '52.0.0.0', 'end_address': '52.79.255.255', 'owner': 'Amazon Technologies Inc.', 'description': 'All abuse reports MUST include:\r * src IP\r * dest IP (your IP)\r * dest port\r * Accurate date/timestamp and timezone of activity\r * Intensity/frequency (short log extracts)\r * Your contact details (phone and email) Without these we will be unable to identify the correct owner of the IP address at that point in time.', 'location': '410 Terry Ave N.\nSeattle\nWA\n98109\nUnited States'}
+----------------------------------
+20.113.97.24 Information: 
+{'network_name': 'MSFT', 'start_address': '20.33.0.0', 'end_address': '20.128.255.255', 'owner': 'Microsoft Corporation', 'description': 'To report suspected security issues specific to traffic emanating from Microsoft online services, including the distribution of malicious content or other illicit or illegal material through a Microsoft online service, please submit reports to:\r * https://cert.microsoft.com.  \r \r For SPAM and other abuse issues, such as Microsoft Accounts, please contact:\r * abuse@microsoft.com.  \r \r To report security vulnerabilities in Microsoft products and services, please contact:\r * secure@microsoft.com.  \r \r For legal and law enforcement-related requests, please contact:\r * msndcc@microsoft.com\r \r For routing, peering or DNS issues, please \r contact:\r * IOC@microsoft.com', 'location': 'One Microsoft Way\nRedmond\nWA\n98052\nUnited States'}
+----------------------------------
+98.67.199.199 Information: 
+{'network_name': 'BLS-98-67-192-0-1003020950', 'start_address': '98.67.192.0', 'end_address': '98.67.255.255', 'owner': 'SHV ADSL CBB', 'description': None, 'location': '575 Morosgo Dr. NE\nAtlanta\nGA\n30324\nUnited States'}
+----------------------------------
+48.201.112.197 Information: 
+{'network_name': 'UK-MICROSOFT-19901207', 'start_address': '48.160.0.0', 'end_address': '48.255.255.255', 'owner': 'MICROSOFT-MAINT', 'description': None, 'location': None}
+----------------------------------
+172.217.114.4 Information: 
+{'network_name': 'GOOGLE', 'start_address': '172.217.0.0', 'end_address': '172.217.255.255', 'owner': 'Google LLC', 'description': 'Please note that the recommended way to file abuse complaints are located in the following links.   To report abuse and illegal activity: https://www.google.com/contact/  For legal requests: http://support.google.com/legal   Regards,  The Google Team', 'location': '1600 Amphitheatre Parkway\nMountain View\nCA\n94043\nUnited States'}
+----------------------------------
+13.32.241.27 Information: 
+{'network_name': 'AMAZO-CF', 'start_address': '13.32.0.0', 'end_address': '13.33.255.255', 'owner': 'Amazon.com, Inc.', 'description': None, 'location': '1918 8th Ave\nSEATTLE\nWA\n98101-1244\nUnited States'}
+----------------------------------
+99.84.160.51 Information: 
+{'network_name': 'AMAZO-CF', 'start_address': '99.84.0.0', 'end_address': '99.84.255.255', 'owner': 'Amazon.com, Inc.', 'description': None, 'location': '1918 8th Ave\nSEATTLE\nWA\n98101-1244\nUnited States'}
+----------------------------------
+20.52.196.175 Information: 
+{'network_name': 'MSFT', 'start_address': '20.33.0.0', 'end_address': '20.128.255.255', 'owner': 'Microsoft Corporation', 'description': 'To report suspected security issues specific to traffic emanating from Microsoft online services, including the distribution of malicious content or other illicit or illegal material through a Microsoft online service, please submit reports to:\r * https://cert.microsoft.com.  \r \r For SPAM and other abuse issues, such as Microsoft Accounts, please contact:\r * abuse@microsoft.com.  \r \r To report security vulnerabilities in Microsoft products and services, please contact:\r * secure@microsoft.com.  \r \r For legal and law enforcement-related requests, please contact:\r * msndcc@microsoft.com\r \r For routing, peering or DNS issues, please \r contact:\r * IOC@microsoft.com', 'location': 'One Microsoft Way\nRedmond\nWA\n98052\nUnited States'}
+----------------------------------
+18.238.79.40 Information: 
+{'network_name': 'AMAZON-CF', 'start_address': '18.238.0.0', 'end_address': '18.239.255.255', 'owner': 'Amazon.com, Inc.', 'description': None, 'location': '1918 8th Ave\nSEATTLE\nWA\n98101-1244\nUnited States'}
+----------------------------------
+18.164.93.193 Information: 
+{'network_name': 'AMAZON-CF', 'start_address': '18.164.0.0', 'end_address': '18.165.255.255', 'owner': 'Amazon.com, Inc.', 'description': None, 'location': '1918 8th Ave\nSEATTLE\nWA\n98101-1244\nUnited States'}
+----------------------------------
+54.163.39.140 Information: 
+{'network_name': 'AMAZON', 'start_address': '54.144.0.0', 'end_address': '54.221.255.255', 'owner': 'Amazon Technologies Inc.', 'description': 'All abuse reports MUST include:\r * src IP\r * dest IP (your IP)\r * dest port\r * Accurate date/timestamp and timezone of activity\r * Intensity/frequency (short log extracts)\r * Your contact details (phone and email) Without these we will be unable to identify the correct owner of the IP address at that point in time.', 'location': '410 Terry Ave N.\nSeattle\nWA\n98109\nUnited States'}
+----------------------------------
