@@ -1,0 +1,36 @@
+142.251.150.120 Information: 
+{'network_name': 'GOOGLE', 'start_address': '142.250.0.0', 'end_address': '142.251.255.255', 'owner': 'Google LLC', 'description': 'Please note that the recommended way to file abuse complaints are located in the following links.   To report abuse and illegal activity: https://www.google.com/contact/  For legal requests: http://support.google.com/legal   Regards,  The Google Team', 'location': '1600 Amphitheatre Parkway\nMountain View\nCA\n94043\nUnited States'}
+----------------------------------
+224.0.0.251 Information: 
+{'network_name': 'MCAST-NET', 'start_address': '224.0.0.0', 'end_address': '239.255.255.255', 'owner': 'Internet Assigned Numbers Authority', 'description': None, 'location': '12025 Waterfront Drive\r\nSuite 300\nLos Angeles\nCA\n90292\nUnited States'}
+----------------------------------
+142.250.31.188 Information: 
+{'network_name': 'GOOGLE', 'start_address': '142.250.0.0', 'end_address': '142.251.255.255', 'owner': 'Google LLC', 'description': 'Please note that the recommended way to file abuse complaints are located in the following links.   To report abuse and illegal activity: https://www.google.com/contact/  For legal requests: http://support.google.com/legal   Regards,  The Google Team', 'location': '1600 Amphitheatre Parkway\nMountain View\nCA\n94043\nUnited States'}
+----------------------------------
+142.251.211.67 Information: 
+{'network_name': 'GOOGLE', 'start_address': '142.250.0.0', 'end_address': '142.251.255.255', 'owner': 'Google LLC', 'description': 'Please note that the recommended way to file abuse complaints are located in the following links.   To report abuse and illegal activity: https://www.google.com/contact/  For legal requests: http://support.google.com/legal   Regards,  The Google Team', 'location': '1600 Amphitheatre Parkway\nMountain View\nCA\n94043\nUnited States'}
+----------------------------------
+142.250.65.78 Information: 
+{'network_name': 'GOOGLE', 'start_address': '142.250.0.0', 'end_address': '142.251.255.255', 'owner': 'Google LLC', 'description': 'Please note that the recommended way to file abuse complaints are located in the following links.   To report abuse and illegal activity: https://www.google.com/contact/  For legal requests: http://support.google.com/legal   Regards,  The Google Team', 'location': '1600 Amphitheatre Parkway\nMountain View\nCA\n94043\nUnited States'}
+----------------------------------
+54.86.151.37 Information: 
+{'network_name': 'AMAZON-2011L', 'start_address': '54.64.0.0', 'end_address': '54.95.255.255', 'owner': 'Amazon Technologies Inc.', 'description': 'All abuse reports MUST include:\r * src IP\r * dest IP (your IP)\r * dest port\r * Accurate date/timestamp and timezone of activity\r * Intensity/frequency (short log extracts)\r * Your contact details (phone and email) Without these we will be unable to identify the correct owner of the IP address at that point in time.', 'location': '410 Terry Ave N.\nSeattle\nWA\n98109\nUnited States'}
+----------------------------------
+13.33.82.101 Information: 
+{'network_name': 'AMAZO-CF', 'start_address': '13.32.0.0', 'end_address': '13.33.255.255', 'owner': 'Amazon.com, Inc.', 'description': None, 'location': '1918 8th Ave\nSEATTLE\nWA\n98101-1244\nUnited States'}
+----------------------------------
+216.239.35.4 Information: 
+{'network_name': 'GOOGLE', 'start_address': '216.239.32.0', 'end_address': '216.239.63.255', 'owner': 'Google LLC', 'description': 'Please note that the recommended way to file abuse complaints are located in the following links.   To report abuse and illegal activity: https://www.google.com/contact/  For legal requests: http://support.google.com/legal   Regards,  The Google Team', 'location': '1600 Amphitheatre Parkway\nMountain View\nCA\n94043\nUnited States'}
+----------------------------------
+108.138.64.45 Information: 
+{'network_name': 'AMAZON-CF', 'start_address': '108.138.0.0', 'end_address': '108.139.255.255', 'owner': 'Amazon.com, Inc.', 'description': None, 'location': '1918 8th Ave\nSEATTLE\nWA\n98101-1244\nUnited States'}
+----------------------------------
+34.223.45.102 Information: 
+{'network_name': 'AT-88-Z', 'start_address': '34.192.0.0', 'end_address': '34.255.255.255', 'owner': 'Amazon Technologies Inc.', 'description': 'All abuse reports MUST include:\r * src IP\r * dest IP (your IP)\r * dest port\r * Accurate date/timestamp and timezone of activity\r * Intensity/frequency (short log extracts)\r * Your contact details (phone and email) Without these we will be unable to identify the correct owner of the IP address at that point in time.', 'location': '410 Terry Ave N.\nSeattle\nWA\n98109\nUnited States'}
+----------------------------------
+104.18.17.147 Information: 
+{'network_name': 'CLOUDFLARENET', 'start_address': '104.16.0.0', 'end_address': '104.31.255.255', 'owner': 'Cloudflare, Inc.', 'description': None, 'location': '101 Townsend Street\nSan Francisco\nCA\n94107\nUnited States'}
+----------------------------------
+34.160.81.0 Information: 
+{'network_name': 'GOOGL-2', 'start_address': '34.128.0.0', 'end_address': '34.191.255.255', 'owner': 'Google LLC', 'description': '*** The IP addresses under this Org-ID are in use by Google Cloud customers *** \r \r Direct all copyright and legal complaints to \r https://support.google.com/legal/go/report\r \r Direct all spam and abuse complaints to \r https://support.google.com/code/go/gce_abuse_report\r \r For fastest response, use the relevant forms above.\r \r Complaints can also be sent to the GC Abuse desk \r (google-cloud-compliance@google.com) \r but may have longer turnaround times.\r \r Complaints sent to any other POC will be ignored.', 'location': '1600 Amphitheatre Parkway\nMountain View\nCA\n94043\nUnited States'}
+----------------------------------
