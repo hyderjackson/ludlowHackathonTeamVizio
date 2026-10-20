@@ -72,3 +72,29 @@ Method: two back-to-back kids-app captures, one toggle changed. Compared Inscape
 With ACR off, WatchFree+ content comes from Amagi (`*.amagi.tv`) and the program is readable in the plaintext hostname via DNS and TLS SNI, for example `vizioaaaa-foxnewsnow-vizio-*.amagi.tv` and `amg01918-cnnus-*.playouts.now.amagi.tv`. The channel (Fox News, CNN) is visible without decryption. Reproduces the prior paper's Amagi finding.
 
 Method: extracted DNS query names and TLS SNI (`tshark -e dns.qry.name -e tls.handshake.extensions_server_name`) and grepped for `amagi.tv`.
+
+### 5. ACR did not fire consistently across sessions
+
+The same app and content type gave opposite ACR behavior one day apart.
+
+| Session | Content | `:5558` | Inscape |
+|---|---|---|---|
+| 2026-10-19 | WatchFree+ news | present, 800 pkt | present |
+| 2026-10-20 | WatchFree+ news | absent | absent |
+
+On 2026-10-20 the TV streamed 176 MB of WatchFree+ video over 8 minutes and sent no fingerprint stream and no Inscape control traffic. The day before, the same WatchFree+ news setup produced both. ACR presence varied by session, not just by app or content.
+
+Method: ran `tshark -Y 'udp.port==5558'` and a TLS SNI filter for `tvinteractive` on both captures. Confirmed video was actually streaming on 2026-10-20 by summing frame bytes per host (176 MB down from the WatchFree+ Fastly CDN).
+
+### 6. In a same-session test, the kids app was tracked and the news app was not
+
+Two back-to-back captures on 2026-10-20, ACR on, 8 minutes each.
+
+| Leg | Content | `:5558` | Inscape check-in |
+|---|---|---|---|
+| Kids (Sesame Street) | 290 MB | absent | present (`control2`, `control-zoo-default`) |
+| News (WatchFree+) | 176 MB | absent | absent |
+
+The kids app triggered an Inscape check-in. The WatchFree+ news app did not. No evidence that children's content is exempt from tracking. If anything, the kids app drew the control-plane check-in and the news app did not.
+
+Method: recorded the two legs back to back in one session to remove time-of-day drift, then extracted TLS SNI (`tls.handshake.extensions_server_name`) and filtered for `tvinteractive` on each.

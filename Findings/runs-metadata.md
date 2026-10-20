@@ -30,6 +30,13 @@ seen. Amagi = program name visible in plaintext Amagi SNI.
 | 20:16 | Sesame Street | kids app | on | on | off | 377,444 | 600 | no | yes | no |
 | 20:39 | Sesame Street | kids app | on | on | on | 367,529 | 600 | no | no | no |
 
+Paired same-session test, 2026-10-20:
+
+| Start (EDT) | Scenario | Source | ACR | Ads | DNS | Packets | Dur (s) | `:5558` | Inscape | Amagi |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 09:43 | Sesame Street | kids app | on | - | - | 286,640 | 480 | no | yes | no |
+| 09:52 | Fox News | WatchFree+ | on | - | - | 175,036 | 480 | no | no | no |
+
 Notes:
 
 - Kinesis analytics (`kinesis.us-west-2.amazonaws.com`) appeared in nearly every run
@@ -40,3 +47,7 @@ Notes:
   vary.
 - The `:5558` collector handoff described in `FINDINGS.md` section 1a comes from the
   continuous background capture around 16:44, not from one of the rows above.
+- The 2026-10-20 pair backs findings 5 and 6. The 09:52 WatchFree+ run streamed 176 MB of
+  video but produced no `:5558` and no Inscape, unlike the 2026-10-19 WatchFree+ news runs.
+  Its Amagi SNI was not captured in the window, so content was confirmed by the 176 MB
+  downstream from the WatchFree+ Fastly CDN.
