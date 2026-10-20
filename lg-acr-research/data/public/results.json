@@ -1,0 +1,88 @@
+{
+  "scope": {
+    "model": "LG 24LB7000PUA",
+    "firmware": "43.04.24",
+    "webos_internal": "11.0.1-9104",
+    "root_method": "SlopBro v0.1.0; Homebrew Channel root status confirmed"
+  },
+  "live_plus": [
+    {
+      "phase": "on1",
+      "fingerprint_posts": 215,
+      "accepted": 215,
+      "separate_session": false
+    },
+    {
+      "phase": "off1",
+      "fingerprint_posts": 0,
+      "accepted": 0,
+      "separate_session": false
+    },
+    {
+      "phase": "on2",
+      "fingerprint_posts": 215,
+      "accepted": 215,
+      "separate_session": false
+    },
+    {
+      "phase": "off2_followup",
+      "fingerprint_posts": 0,
+      "accepted": 0,
+      "separate_session": false
+    }
+  ],
+  "hdmi": [
+    {
+      "phase": "av1",
+      "fingerprint_attempts": 46,
+      "accepted": 43,
+      "malformed": 3,
+      "no_response": 0,
+      "tcp4437_packets": 589
+    },
+    {
+      "phase": "v_only",
+      "fingerprint_attempts": 0,
+      "accepted": 0,
+      "malformed": 0,
+      "no_response": 0,
+      "tcp4437_packets": 53
+    },
+    {
+      "phase": "a_only",
+      "fingerprint_attempts": 50,
+      "accepted": 48,
+      "malformed": 2,
+      "no_response": 0,
+      "tcp4437_packets": 589
+    },
+    {
+      "phase": "av2",
+      "fingerprint_attempts": 45,
+      "accepted": 42,
+      "malformed": 2,
+      "no_response": 1,
+      "tcp4437_packets": 554
+    }
+  ],
+  "certificate": {
+    "attempts": 52,
+    "valid_accepted": 48,
+    "measured_connections": 5,
+    "test_ca_installed_by_procedure": false
+  },
+  "baseline": {
+    "accepted_messages": 289,
+    "legacy_records": 9826,
+    "v3_vectors": 4865
+  },
+  "unproved": [
+    "ambient microphone capture",
+    "video uploads",
+    "consent bypass",
+    "offline queues",
+    "standby collection",
+    "stock-device TLS behavior",
+    "worldwide priority"
+  ]
+}

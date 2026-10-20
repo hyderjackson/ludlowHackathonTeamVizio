@@ -1,0 +1,7 @@
+# Optional: full V3 validation and figures. Core layout demo uses the standard library.
+numpy>=1.26,<3
+matplotlib>=3.8,<4
+# SDK harness only; execute via the isolated runner.
+unicorn>=2.0,<3
+# Instrumentation only; no live deployment is started by this repository.
+# Install mitmproxy from its official distribution if reviewing/running addons.

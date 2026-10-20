@@ -1,0 +1,95 @@
+{
+  "description": "Provenance of code copied from this investigation. Source paths are relative to its original workspace. No private evidence is included.",
+  "files": [
+    {
+      "file": "analysis/common/inspect_flows.py",
+      "source": "work/acr-analysis/inspect_flows.py",
+      "original_sha256": "dd8a3ad49a76311cf7fc039944385f0ac87fca4803b6c18235c7104464ca261c",
+      "changes": "Portability/privacy edits documented in docs/04-code-map.md"
+    },
+    {
+      "file": "analysis/baseline/decode_legacy.py",
+      "source": "work/acr-legacy/decode_legacy.py",
+      "original_sha256": "11aa7f8bd590979449d8e0b4a0ec6916b6f3465f10a85c2d19e3b1863ef92b05",
+      "changes": "Portability/privacy edits documented in docs/04-code-map.md"
+    },
+    {
+      "file": "analysis/baseline/decode_v3_structure.py",
+      "source": "work/acr-analysis/decode_v3_structure.py",
+      "original_sha256": "dc58d4991d78229b2c42f9b7f8f16b2828564defcf7da9e2e9cd4dec38f857e1",
+      "changes": "Portability/privacy edits documented in docs/04-code-map.md"
+    },
+    {
+      "file": "analysis/live_plus/compare_study.py",
+      "source": "work/acr-study-analysis/compare_study.py",
+      "original_sha256": "09e3703edcc52f1b8b7491c95e669876fe712a0d1c73f77e20d25f59a81b0a4d",
+      "changes": "Portability/privacy edits documented in docs/04-code-map.md"
+    },
+    {
+      "file": "analysis/live_plus/check_packets.py",
+      "source": "work/acr-study-analysis/check_packets.py",
+      "original_sha256": "09278f79f6fae896196bc5c00d89042df1292de9f9182aca2df7da8dcfb1bb1e",
+      "changes": "Portability/privacy edits documented in docs/04-code-map.md"
+    },
+    {
+      "file": "analysis/hdmi/analyze_e2.py",
+      "source": "work/acr-hdmi-e2-analysis/analyze_e2.py",
+      "original_sha256": "52ab8dbb033dcb23379aa237aacff5e6a3b0b44194d1a13a98ec58fc79065b78",
+      "changes": "Portability/privacy edits documented in docs/04-code-map.md"
+    },
+    {
+      "file": "analysis/certificate/analyze_certificate.py",
+      "source": "work/acr-cert-test-analysis/analyze_certificate.py",
+      "original_sha256": "f1ecd99ea36db4853e76449cf9752805c9165f8a47ea5f8c52132a05c13f8eb4",
+      "changes": "Portability/privacy edits documented in docs/04-code-map.md"
+    },
+    {
+      "file": "analysis/sdk/emulate_serializer.py",
+      "source": "work/acr-legacy/emulate_serializer.py",
+      "original_sha256": "575c3e985aaa9478b26a011f2adaac40ec68076dada0fefe3b9a0f72671316c7",
+      "changes": "Unchanged original analysis source"
+    },
+    {
+      "file": "analysis/sdk/emulate_quantizer.py",
+      "source": "work/acr-legacy/emulate_quantizer.py",
+      "original_sha256": "7ced7aa2027f5c95f99a8751e111360b954531453d917c4c6b7f81364c13eee5",
+      "changes": "Unchanged original analysis source"
+    },
+    {
+      "file": "analysis/live_plus/plot_results.py",
+      "source": "work/acr-study-analysis/plot_results.py",
+      "original_sha256": "06465703b5b2a2bae70d068e89275a5bbaeab7eea891ea8e0429e1c1754a7392",
+      "changes": "Portability/privacy edits documented in docs/04-code-map.md"
+    },
+    {
+      "file": "analysis/hdmi/plot_e2.py",
+      "source": "work/acr-hdmi-e2-analysis/plot_e2.py",
+      "original_sha256": "fec740cea1fd0c2b9087160d50892e1be4069b883641a0c8f660f65b9715f3da",
+      "changes": "Portability/privacy edits documented in docs/04-code-map.md"
+    },
+    {
+      "file": "experiments/play_hdmi.py",
+      "source": "outputs/acr-hdmi-e2/play-e2.py",
+      "original_sha256": "eb2d9f4099d6ac735feb0fc6c719e21f58228d3e1605db642e8ad3616acf94c2",
+      "changes": "Portability/privacy edits documented in docs/04-code-map.md"
+    },
+    {
+      "file": "experiments/build_clips.sh",
+      "source": "outputs/acr-hdmi-e2/build-clips.sh",
+      "original_sha256": "a887a50ac78ff392ae5fc5d7eaa88a2a25ea2f5088051ee69a047580655ca7a6",
+      "changes": "Portability/privacy edits documented in docs/04-code-map.md"
+    },
+    {
+      "file": "instrumentation/fingerprint_events.py",
+      "source": "outputs/acr-hdmi-e2/e2-counter.py",
+      "original_sha256": "5191e7d636e2a8af7722a137ca95ce4ae3a7fb921def3e1c2d0a2b3c674dc4fd",
+      "changes": "Portability/privacy edits documented in docs/04-code-map.md"
+    },
+    {
+      "file": "instrumentation/certificate_events.py",
+      "source": "outputs/acr-cert-test/certificate-evidence.py",
+      "original_sha256": "5215881e0f51f1485323871d1b4b1abb86dda5dbb4c126d845bb4c07b28fa219",
+      "changes": "Portability/privacy edits documented in docs/04-code-map.md"
+    }
+  ]
+}

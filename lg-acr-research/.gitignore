@@ -1,0 +1,25 @@
+# Private inputs and generated material never belong in Git.
+private-runs/
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+*.mitm
+*.pcap
+*.pcapng
+*.tgz
+*.tar
+*.zip
+*.so
+*.so.*
+*.wav
+*.mp3
+*.mp4
+*.srt
+*.jsonl
+*.log
