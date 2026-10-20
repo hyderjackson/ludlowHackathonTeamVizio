@@ -1,37 +1,29 @@
-# Vizio SmartCast / VIZIO OS — Evidence-Based Findings
+# VIZIO SmartCast / VIZIO OS — Technical Findings
 
-**Document date:** 2026-10-19 (America/New_York)  
-**Investigation goal:** Determine what is actually established about the TV's software, exposed interfaces, Chromium isolation, and feasibility of native/Linux access.  
-**Scope:** Evidence visible in this conversation and the available excerpts of earlier conversations in the same project. This is **not** a complete forensic acquisition or an exhaustive export of all prior chats.
+**Record updated:** 2026-10-20  
+**Target:** VIZIO SmartCast television running firmware `3.720.9.1-1`  
+**Status:** Investigation ongoing; Linux root access not demonstrated
 
-> **Evidence rule:** A result observed in an actual pasted response or code excerpt is marked **Observed**. A statement repeated from an earlier summary without its underlying log is marked **Reported, not independently verified**. Results obtained on another TV are **External-only** and must not be attributed to this device. Unknown means **not established**, not "false" or "patched".
+## 1. Scope and evidence conventions
 
-## 1. Executive status
+This record documents device observations, reproduced response excerpts, and technical leads relevant to SmartCast service exposure, Chromium execution, and Linux privilege boundaries. Results from other devices are clearly distinguished from results observed on the target.
 
-| Question / property | Current status | Evidence |
-| --- | --- | --- |
-| Firmware version | **Observed:** `3.720.9.1-1` | E-01 |
-| SCPL version | **Observed:** `3.4.3-2614.0002` | E-01 |
-| ACR component version | **Observed:** `3.5.1106` | E-01 |
-| Service reached on TCP 7345 | **Observed:** HTTPS request returned an HTTP/2 response | E-02 |
-| HTTP server | **Observed:** `lighttpd/1.4.67` in the HTTP response header | E-02 |
-| `/install` behavior with invalid POST input | **Observed:** HTTP `500` and `Unhandled Exception` HTML | E-02 |
-| Chromium version | **Reported:** Chromium 108; raw user-agent/build output is not included in available excerpts | C-01 |
-| CPU architecture | **Reported:** 32-bit ARM / ARMv7; raw CPU identification is not included in available excerpts | C-01 |
-| Exact retail model / SoC | **Unknown from current device logs** | — |
-| Chromium renderer sandbox enabled? | **Unknown** | U-01 |
-| Chromium process UID, privileges, seccomp, namespaces | **Unknown** | U-01 |
-| Native code execution on this TV | **Not demonstrated in supplied logs** | — |
-| Linux root access on this TV | **Not demonstrated in supplied logs** | — |
-| Public exploit verified to work on this exact combination | **None established** | C-02 |
+Evidence classifications:
 
-## 2. Primary evidence: outputs actually shared
+- **Observed:** A command result, protocol response, or file excerpt has been retained below.
+- **Reported:** A prior technical result has been noted, but its supporting raw output has not been retained in this evidence set.
+- **External:** Published work on a different device or build; not reproduced on the target.
+- **Unknown:** No evidence sufficient to establish the property.
 
-### E-01 — Component versions returned by the TV API
+A missing exploit result does not prove a vulnerability is absent or patched. Generic error responses are not treated as evidence of either exploitability or remediation.
 
-**Source:** Pasted JSON output in the earlier project chat titled *Summarize Vizio ACR findings*, dated 2026-10-19. The exact API request path and command invocation were not preserved in the available excerpt.
+## 2. Device component identification — E-001
 
-**Observed response fields (faithful subset of shared output):**
+**Evidence type:** Observed API response  
+**Request path:** Not retained  
+**Recorded date:** 2026-10-19
+
+The following relevant fields were returned in a successful component query:
 
 ```json
 {
@@ -50,18 +42,17 @@
 }
 ```
 
-**Findings:**
+This is a **selected excerpt**, not the complete API response. Firmware and SCPL versions each appear under uppercase and lowercase component names. The ACR component reports `3.5.1106`. The response indicates `RESULT: SUCCESS`.
 
-- Firmware identifier `3.720.9.1-1` was returned in both uppercase and lowercase component names.
-- SCPL identifier `3.4.3-2614.0002` was returned in both uppercase and lowercase component names.
-- ACR component identifier `3.5.1106` was returned.
-- The response itself indicated `RESULT: SUCCESS`.
+An additional `vizios` component was present but its value is truncated (`mtk...`) in the retained extract. That field does not establish an exact processor or platform identifier. The complete endpoint invocation, authentication method, and model identification were not preserved.
 
-**Limitations:** The excerpt also begins a `vizios` component whose value is truncated (`mtk...`). Its complete value is unavailable, so no SoC model, platform identifier, or VIZIO OS version can be established from that field here. The excerpt does not preserve the exact endpoint, authentication mode, or full response.
+## 3. SCPL `/install` request — E-002
 
-### E-02 — Invalid POST to the SCPL installer path
+**Evidence type:** Observed HTTP response  
+**Endpoint:** `https://<TV_IP>:7345/install`  
+**Request:** Intentionally invalid POST body; no executable payload
 
-**Source:** This conversation. The user ran a test after receiving the following recommended command (with the actual TV address substituted):
+Associated test-command template:
 
 ```bash
 curl -ksS -i --max-time 8 \
@@ -70,7 +61,7 @@ curl -ksS -i --max-time 8 \
   'https://TV_IP:7345/install'
 ```
 
-**Exact response pasted by the user:**
+The exact substituted IP address and complete local command invocation were not retained. The recorded response was:
 
 ```http
 HTTP/2 500
@@ -88,20 +79,23 @@ server: lighttpd/1.4.67
 </body></html>
 ```
 
-**Findings:**
+**Established:**
 
-- An HTTPS service was reachable on the TV's port `7345` at the time of this request.
-- The response used `HTTP/2` and reported `lighttpd/1.4.67` as the server.
-- The `/install` request with the above intentionally invalid POST data returned HTTP `500` and an application exception page.
-- This response **does not demonstrate** command injection, successful installation, file upload, native execution, or root access.
+- An HTTPS service responded on TCP port `7345`.
+- The recorded response used HTTP/2 and identified `lighttpd/1.4.67`.
+- The malformed `/install` POST returned HTTP `500` and an `Unhandled Exception` page.
 
-**What the response cannot distinguish:** An absent route, a registered handler that throws on malformed input, a rejected request shape, filtering, and other server-side failures might produce similar errors. The response alone **cannot establish whether CVE-2021-27944 is present or patched**.
+**Not established:** Whether the endpoint is registered, rejects this request format, invokes an exception-prone handler, or is blocked by server-side controls. This result alone does not establish that the historical ViziOwn/CVE-2021-27944 command-injection issue is exploitable, mitigated, or patched. No file installation, command execution, or privilege escalation was observed in the retained response.
 
-**Time note:** The time above is the server-supplied `Date` header (UTC), not an independently recorded client timestamp.
+**Timestamp note:** `20 Oct 2026 02:26:19 GMT` is the server-provided HTTP `Date` header, not an independently captured client clock.
 
-### E-03 — Local inspection excerpt from an x64 V8 proof-of-concept
+## 4. V8 proof-of-concept compatibility review — E-003
 
-**Source:** Earlier project chat *Investigate Root Debugging Entry Points*, dated 2026-10-19. The available excerpt contains line-numbered matches from an exploit file, including:
+**Evidence type:** Observed source-file excerpt  
+**Recorded date:** 2026-10-19  
+**Target execution:** Not demonstrated
+
+Selected line-numbered matches from an inspected V8 exploit file:
 
 ```text
 42://"C:\v8\v8\out\x64.release\d8.exe" --allow-natives-syntax exploit.js
@@ -111,92 +105,87 @@ server: lighttpd/1.4.67
 100:    //%DebugPrint(Reflect.getOwnPropertyDescriptor(globalThis, "stack"));
 ```
 
-**Findings:**
+The file includes an invocation for an x64 V8 `d8` development binary with native syntax enabled. The retained excerpt does not establish compatibility with ARMv7, execution inside the television's production Chromium build, a successful memory-corruption trigger, or Linux privilege escalation.
 
-- The inspected code included an example invocation referencing `x64.release/d8.exe` and V8 native/debugging syntax.
-- The snippet is **not** evidence that this code executed on the Vizio, nor that it is portable to ARMv7.
-- No output demonstrating a V8 vulnerability trigger, arbitrary native execution, or privilege change on this TV is available in these excerpts.
+## 5. Platform and Chromium facts requiring corroboration — C-001
 
-## 3. Earlier investigation claims without preserved raw device logs
-
-These items appeared in earlier project-chat summaries or discussion. They are included to avoid losing context, **not** to upgrade them into verified findings.
-
-| ID | Prior statement or lead | Evidentiary status on this TV |
+| Property | Status | Evidence limit |
 | --- | --- | --- |
-| C-01 | Chromium `108` and CPU architecture ARMv7 / 32-bit ARM | Reported earlier; version/CPU-identification output not currently available |
-| C-02 | No confirmed ready-to-run exploit for this exact Chromium 108 + ARMv7 + firmware combination | Research assessment, not proof that no exploit exists |
-| C-03 | WebP / CVE-2023-4863 testing was inconclusive | Earlier summary; detailed test inputs and device logs absent |
-| C-04 | USB-based routes were considered but not validated | Earlier discussion; exact USB experiments and logs absent |
-| C-05 | CVE-2023-2033 public proof-of-concept had x86-64 / `d8` assumptions | Partially supported by E-03; not a target-device result |
-| C-06 | CVE-2023-1214 was proposed as a V8 research candidate | No successful device reproduction captured |
-| C-07 | CVE-2023-6702 was proposed as a V8 research candidate | No successful device reproduction or ARMv7 port captured |
-| C-08 | A newer SmartCast research repository demonstrated a webview-to-internal-API path | External-only; different device, Chromium, and SCPL versions |
-| C-09 | UART hardware research exists for a TV reportedly using firmware `3.720.9.1-1` | External-only; does not establish this particular TV's retail model, UART state, or boot restrictions |
+| Firmware `3.720.9.1-1` | **Observed** | E-001 |
+| SCPL `3.4.3-2614.0002` | **Observed** | E-001 |
+| ACR `3.5.1106` | **Observed** | E-001 |
+| HTTP/2 service on port `7345`, lighttpd `1.4.67` | **Observed** | E-002 |
+| Chromium `108` | **Reported** | Full user-agent or build output not retained |
+| 32-bit ARM / ARMv7 | **Reported** | Raw CPU or ABI identification not retained |
+| Retail model and exact SoC | **Unknown** | No complete model/processor response retained |
+| Chromium sandbox enabled or disabled | **Unknown** | No launch flags or process-level evidence retained |
+| Renderer UID/GID, seccomp, namespaces | **Unknown** | No process diagnostic capture retained |
+| Native execution on target | **Not demonstrated** | No successful native-execution trace retained |
+| Linux root on target | **Not demonstrated** | No elevated identity or shell trace retained |
 
-### Important separation: other devices
+Chromium's default Linux sandbox behavior cannot establish the effective sandbox configuration of this embedded browser. Required evidence includes process command lines, UID/GID, seccomp state, and namespace isolation, or the equivalent facts from the firmware's launch configuration.
 
-A public October 2026 write-up for an **onn. 65S4V4 / W4K65M-1030** described VIZIO OS `1.8.1767.1`, SCPL `3.7.3-2640`, Chromium `128.0.6613.194`, and a MediaTek MT5586. Its author reported paired remote webview JavaScript execution and internal configuration writes, **not kernel/root execution**. This research **must not be conflated with** this TV's observed firmware `3.720.9.1-1` and SCPL `3.4.3-2614.0002`.
+## 6. Exploit research and prior leads — C-002
 
-Reference: <https://github.com/vindeckyy/smartcast-backdoor> (external research; no reproduction on this device).
+The following items are research leads or prior assessments, **not verified vulnerabilities on the target**:
 
-Other earlier discussions referenced a Vizio VFD40M-0810 hardware report associated with the same firmware string. A matching version string alone does **not** prove that the user's TV has that exact model, SoC, boot configuration, or serial-console restrictions.
+| Lead | Current evidence boundary |
+| --- | --- |
+| CVE-2021-27944 / ViziOwn `/install` | Historical SmartCast exploit; E-002 does not reproduce its command-execution behavior |
+| CVE-2023-4863 / WebP | Earlier testing reported as inconclusive; raw device test output not retained |
+| CVE-2023-1214 / V8 | Candidate requiring exact-version and architecture validation; no successful target reproduction retained |
+| CVE-2023-2033 / V8 | Examined proof-of-concept includes x64 `d8` assumptions (E-003); no ARMv7 target execution retained |
+| CVE-2023-6702 / V8 | Public renderer-execution research exists; no verified ARMv7 port or target reproduction retained |
+| USB entry points | No verified entry point or successful target outcome retained |
+| UART / hardware console | No target-specific boot transcript, authenticated shell, or privilege result retained |
 
-## 4. Requests suggested but without returned results
+### External research: newer SmartCast implementation
 
-The earlier assistant suggested comparing:
+A public October 2026 report covers **onn. 65S4V4 / W4K65M-1030**, VIZIO OS `1.8.1767.1`, SCPL `3.7.3-2640`, Chromium `128.0.6613.194`, and MediaTek MT5586. The report describes paired control-API access leading to JavaScript execution in a system webview and persistent configuration-store changes. It explicitly does **not** demonstrate Linux kernel or root access.
+
+Reference: <https://github.com/vindeckyy/smartcast-backdoor>
+
+**Applicability:** External only. The tested hardware, Chromium version, and SCPL build differ from E-001 and the reported target environment. The report's successful results must not be attributed to this television.
+
+### External research: hardware and UART
+
+A separate Vizio VFD40M-0810 hardware-research report has been associated with firmware version `3.720.9.1-1`. The shared firmware string does not independently establish the target television's retail model, SoC, bootloader configuration, serial console access, or filesystem protections. No matching on-device boot log has been retained in this evidence set.
+
+## 7. Checks without recorded results — C-003
+
+The following comparison commands were identified but have **no retained response**:
 
 ```bash
 curl -ksS --http1.1 -i "https://TV_IP:7345/install"
 curl -ksS --http1.1 -i "https://TV_IP:7345/this-route-does-not-exist-12345"
 ```
 
-**No user response to either command appears in the available conversation.** These are planned/mentioned checks, not completed findings. Do not infer what either returned.
+These are **uncompleted or undocumented checks**, not evidence of endpoint behavior. No result should be inferred.
 
-## 5. Unresolved technical questions
+## 8. Open technical questions
 
-### U-01 — Chromium sandbox and effective privileges
+1. **Exact browser and architecture:** Confirm Chromium build identity and CPU/ABI from full primary-source output.
+2. **Renderer isolation:** Determine the actual Chromium process launch flags, effective UID/GID, namespace configuration, and seccomp restrictions for firmware `3.720.9.1-1`.
+3. **SCPL installer semantics:** Establish whether `/install` is registered and what its actual implementation accepts. The HTTP 500 response in E-002 cannot answer this.
+4. **Native execution boundary:** Determine whether any reproducible primitive yields native execution, and under which process privileges.
+5. **Linux privilege escalation:** No validated path from the exposed application/browser surface to Linux root has been recorded.
 
-**Current status: unknown.** No process command line, `Seccomp` field, namespace map, process UID/GID, container policy, or renderer process tree has been shared.
+## 9. Evidence collection and contribution format
 
-A stock Chromium 108 Linux build's usual behavior is not sufficient to prove the same behavior on this embedded Vizio build. In particular, the available evidence does **not** establish whether `--no-sandbox` is used, whether a renderer is isolated, or what effective privileges would be available following renderer code execution.
+For additional findings contributed to the repository, include:
 
-### U-02 — Exact hardware and browser build identity
+- **ID and title:** Unique identifier (for example, `E-004 — <short title>`).
+- **Environment:** Device model, firmware, SCPL/browser version, and relevant build details.
+- **Method:** Exact command or request with secrets and private identifiers redacted.
+- **Raw output:** Unmodified relevant response, log, or file excerpt.
+- **Timestamp:** Date, time, timezone, and whether the time came from a server or client.
+- **Interpretation:** Separate directly established behavior from hypotheses and missing evidence.
+- **Source:** Local artifact path, commit reference, capture hash, or external URL when available.
 
-An untruncated device identification response, CPU details, and browser version/build output are not included in the available raw logs. The reported ARMv7 and Chromium 108 versions remain useful leads but are not independently documented here.
+Preserve contradictory observations with their firmware versions, dates, and test conditions rather than overwriting earlier records. Remove authentication tokens, serial numbers, MAC addresses, and unnecessary IP addresses from public submissions.
 
-### U-03 — SCPL `/install` handler behavior
+## 10. Current conclusion
 
-Only one malformed POST response (E-02) is recorded here. It is insufficient to distinguish an unavailable endpoint from one that errors on the supplied input. No successful sideload, command execution, or root result has been shown.
+The retained primary evidence establishes firmware `3.720.9.1-1`, SCPL `3.4.3-2614.0002`, ACR `3.5.1106`, an HTTPS service on port `7345`, and an HTTP `500 Unhandled Exception` response to one invalid `/install` POST. An inspected V8 proof-of-concept references an x64 development runtime but has no demonstrated execution on the target.
 
-### U-04 — Root-access path
-
-No demonstrated renderer exploit, sandbox escape, privileged service exploit, working UART shell, or elevated `id`/`whoami` output appears in the available logs. Therefore the overall chain to Linux root remains **unproven**.
-
-## 6. Evidence required before stronger claims can be made
-
-The following are evidence types, not a request to repeat earlier unproductive exploit tests:
-
-1. **For Chromium version/architecture:** a full browser user-agent or build/version readout and a device CPU identification response.
-2. **For sandbox status:** firmware-backed launch configuration or read-only process diagnostics showing renderer command-line flags, UID/GID, seccomp, and namespace isolation.
-3. **For root claims:** an authenticated capture of privilege identity and execution context on the specific TV, with a documented way that access was obtained.
-4. **For installer conclusions:** differentiated handler responses or relevant firmware implementation evidence, rather than treating a generic `500` as proof of either vulnerability or patching.
-5. **For future records:** retain exact commands, output, timestamps/time zone, model, source device, test conditions, and hashes for any copied binaries or firmware files. Remove secrets such as pairing tokens, passwords, device serials, MAC addresses, and IP addresses from shared reports when not necessary.
-
-## 7. Findings register and update rules
-
-| Finding | Confidence | Conclusion |
-| --- | --- | --- |
-| F-001 | High — pasted API output | Firmware reported as `3.720.9.1-1` |
-| F-002 | High — pasted API output | SCPL reported as `3.4.3-2614.0002` |
-| F-003 | High — pasted API output | ACR component reported as `3.5.1106` |
-| F-004 | High — pasted HTTP response | Port 7345 responded over HTTPS with HTTP/2 and `lighttpd/1.4.67` |
-| F-005 | High — pasted HTTP response | Invalid `/install` POST returned `500 Unhandled Exception` |
-| F-006 | High — pasted exploit-file excerpt | Examined V8 sample referenced an x64 `d8` development build |
-| F-007 | Not established | Chromium sandbox status on this firmware |
-| F-008 | Not established | Native Linux execution and root privileges on this TV |
-
-**Update policy:** Append new evidence under a new `E-##` entry; do not rewrite an earlier uncertainty as established without the corresponding raw result. Label any material reproduced on a separate device **External-only**. If later logs contradict a finding, preserve both observations and note different firmware, dates, or test conditions.
-
----
-
-*Compiled from the currently visible project-chat excerpts and this conversation on 2026-10-19. No firmware image, device log archive, or complete previous-chat export was available to validate additional assertions.*
+**Chromium sandbox status, effective renderer privileges, ARMv7 exploit compatibility, native execution, and Linux root access remain unverified.** External demonstrations on other SmartCast devices do not close those evidence gaps.
